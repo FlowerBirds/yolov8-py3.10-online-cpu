@@ -12,6 +12,8 @@ jobs:
         run: |
           wget ${{ vars.CODESERVER_URL }}
           wget ${{ vars.FONT_URL }}
+          echo "${{ vars.MINIO_IP }} minio-console.tianshu.com" >> /etc/hosts
+          cat /etc/hosts
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
