@@ -10,8 +10,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Download conde-server & font zip file
         run: |
-          wget ${{ env.CODESERVER_URL }}
-          wget ${{ env.FONT_URL }}
+          wget ${{ vars.CODESERVER_URL }}
+          wget ${{ vars.FONT_URL }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
