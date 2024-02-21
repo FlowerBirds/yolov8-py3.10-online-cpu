@@ -5,7 +5,6 @@ LABEL tempo_support_online_coding="true"
 
 # 安装git、中文字体
 ADD chinese.tar.gz /usr/share/fonts/
-RUN ls -l /usr/share/fonts/chinese
 RUN apt-get update && apt-get install -y git \
     && apt-get install -y xfonts-utils fontconfig && cd /usr/share/fonts/chinese \
     && chmod 755 *.ttf && mkfontscale && mkfontdir && fc-cache -fv
