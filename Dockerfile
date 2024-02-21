@@ -16,7 +16,7 @@ ENV TZ=Asia/Shanghai PYTHONIOENCODING=utf-8
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo '$TZ' > /etc/timezone
 
 # 安装第三方包
-RUN pip install tornado pymysql pandas numpy sklearn requests statsmodels scipy pyecharts matplot seaborn cx_Oracle redis
+RUN pip install tornado pymysql pandas numpy scikit-learn requests statsmodels scipy pyecharts matplot seaborn cx_Oracle redis
 
 # 安装jupyter notebook
 RUN pip install jupyter notebook
