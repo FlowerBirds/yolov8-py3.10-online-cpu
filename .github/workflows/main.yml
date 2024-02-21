@@ -1,0 +1,39 @@
+name: Build Docker Image
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Download conde-server & font zip file
+        run: |
+          wget ${{ envs.CODESERVER_URL }}
+          wget ${{ envs.FONT_URL }}
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push latest
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64
+          push: true
+          tags: |
+            flowerbirds/yolov8-py3.10-online-cpu:latest
+            ghcr.io/flowerbirds/yolov8-py3.10-online-cpu:latest
