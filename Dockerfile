@@ -4,7 +4,7 @@ FROM python:3.10-slim
 LABEL tempo_support_online_coding="true"
 
 # 安装git、中文字体
-ADD chinese.tar.gz /usr/share/fonts
+ADD chinese.tar.gz /usr/share/fonts/
 RUN apt-get update && apt-get install -y git \
     && apt-get install -y xfonts-utils fontconfig && cd /usr/share/fonts/chinese \
     && chmod 755 *.ttf && mkfontscale && mkfontdir && fc-cache -fv
