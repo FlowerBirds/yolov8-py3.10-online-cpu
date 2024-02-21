@@ -13,8 +13,10 @@ jobs:
           sudo echo "${{ vars.MINIO_IP }} minio-console.tianshu.com" | sudo tee -a /etc/hosts
           cat /etc/hosts
           wget "${{ vars.CODESEVER_URL }}" -o code-server.tar.gz
+          ls -l
           tar -tzvf code-server.tar.gz
           wget "${{ vars.FONT_URL }}" -o chinese.tar.gz
+          ls -l
           tar -tzvf chinese.tar.gz
           ls -l
       - name: Set up QEMU
